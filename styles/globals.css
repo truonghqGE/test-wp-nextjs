@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;600;700&display=swap');
+/* @import url('//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css'); */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .menu-active {
+    @apply rounded-md text-white bg-gradient-to-r from-green-400 to-blue-500 shadow-sm;
+  }
+  .bg-button {
+    @apply bg-blue-700;
+  }
+  .bg-button-green {
+    @apply bg-gradient-to-r from-green-400 to-blue-500;
+  }
+  /* ... */
+}
+
+html,
+body {
+  background: #fdfdfd;
+  min-height: 100vh;
+  background-color: #ffffff;
+  background-image: linear-gradient(top bottom, #dadadac9 0%, #e2e2e2 74%);
+  /* background: */
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.swiper-slide {
+  width: fit-content !important;
+}
+
+.stroke-1 path {
+  stroke-width: 1px;
+}
+
+.bg-gradient-blue {
+  background: #00d2ff; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #3a7bd5, #00d2ff); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #3a7bd5,
+    #00d2ff
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
