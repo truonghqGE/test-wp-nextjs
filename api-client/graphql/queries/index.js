@@ -5,7 +5,6 @@ export const GET_CATEGORY = gql`
       nodes {
         name
         slug
-        id
         uri
       }
     }
@@ -31,14 +30,18 @@ export const GET_CATEGORY_BY_SLUG = gql`
 `;
 
 export const GET_LIST_POSTS = gql`
-  query GraphQL($categoryName: String!) {
+  query GraphQL($categoryName: Array!) {
     informationalPost(where: { categoryName: $categoryName }) {
       nodes {
         title
         slug
-        link
-        id
+        date
         content
+        categories {
+          nodes {
+            name
+          }
+        }
         featuredImage {
           node {
             altText
