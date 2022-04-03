@@ -41,7 +41,11 @@ export const GET_LIST_POSTS = gql`
         content
         featuredImage {
           node {
+            altText
+            desiredSlug
+            slug
             uri
+            sourceUrl
           }
         }
       }

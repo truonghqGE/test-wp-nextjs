@@ -34,7 +34,7 @@ function MyApp({ Component, pageProps }) {
         <div className="archive category category-nutrition category-19 logged-in admin-bar  customize-support">
           <Header />
           <motion.main
-            key={router.pathname}
+            key={router.asPath}
             variants={variants} // Pass the variant object into Framer Motion
             initial="hidden" // Set the initial state to variants.hidden
             animate="enter" // Animated state to variants.enter
