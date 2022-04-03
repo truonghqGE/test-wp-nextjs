@@ -1,7 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { useQuery, useLazyQuery } from "@apollo/client";
-import { useRouter } from "next/router";
-import { GET_CATEGORY, GET_LIST_POSTS } from "@/api/graphql/queries";
+import React from "react";
 
 const Category = ({ data }) => {
   const categoryList = data || [];
