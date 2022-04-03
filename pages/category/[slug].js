@@ -29,11 +29,10 @@ export async function getStaticProps({ params }) {
   });
   const categories = resultCategories?.categories?.nodes || [];
   const posts = resultPosts?.informationalPost?.nodes || [];
-  return { props: { posts, category, categories } };
+  return { props: { posts, category, categories, fallback: true } };
 }
 
 export default function Home(props) {
-  console.log(props);
   return (
     <div>
       <div
