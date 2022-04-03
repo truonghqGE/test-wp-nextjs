@@ -289,4 +289,4 @@ export default function Home({ post }) {
       </main>
     </div>
   );
-}
+};

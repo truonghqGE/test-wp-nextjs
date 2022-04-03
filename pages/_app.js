@@ -1,21 +1,22 @@
 import "../styles/globals.css";
 import React from "react";
+import axiosClient, { constructCallBack } from "@/api/base/axios-client";
 import "katex/dist/katex.min.css";
 import Header from "@/components/header/index";
+import { SWRConfig } from "swr";
 import HeadSEO from "@/components/SEO/head";
 import Head from "@/components/SEO/head";
 import Footer from "@/components/footer/index";
 import { useRouter } from "next/router";
 import Category from "@/components/category";
-import { AnimatePresence, motion } from 'framer-motion';
-
+import { AnimatePresence, motion } from "framer-motion";
 
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 const variants = {
   hidden: { opacity: 0, x: 0, y: 0 },
   enter: { opacity: 1, x: 0, y: 0 },
-  exit: { opacity: 0, x: 0, y: 0 }
+  exit: { opacity: 0, x: 0, y: 0 },
 };
 
 function MyApp({ Component, pageProps }) {
@@ -30,9 +31,20 @@ function MyApp({ Component, pageProps }) {
       <Head />
       <ApolloProvider client={client}>
         <HeadSEO />
-        <Category data={pageProps.categories} />
+        <SWRConfig
+          value={{
+            fetcher: (url) => {
+              return axiosClient.get(url);
+            },
+            dedupingInterval: 60 * 60 * 1000, // 1hr
+            revalidateOnFocus: false,
+            shouldRetryOnError: false,
+          }}
+        />
+
         <div className="archive category category-nutrition category-19 logged-in admin-bar  customize-support">
           <Header />
+          <Category data={pageProps.categories} />
           <motion.main
             key={router.pathname}
             variants={variants} // Pass the variant object into Framer Motion
