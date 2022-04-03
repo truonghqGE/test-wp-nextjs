@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { gql, useQuery, useLazyQuery } from "@apollo/client";
+import { useQuery, useLazyQuery } from "@apollo/client";
+import gql from "graphql-tag";
+import { useRouter } from "next/router";
+
 const Category = () => {
-  const [category, setCategory] = useState(null);
+  const router = useRouter();
   const GET_CATEGORY = gql`
     query GraphQL {
       categories {
@@ -15,44 +18,53 @@ const Category = () => {
     }
   `;
   const GET_LIST_POSTS = gql`
-      query GraphQL {
-        informationalPost(where: { categoryName: ${category?.name} }) {
-          nodes {
-            title
+    query GraphQL($categoryName: String!) {
+      informationalPost(where: { categoryName: $categoryName }) {
+        nodes {
+          title
+          slug
+          link
+          id
+          content
+          featuredImage {
+            node {
+              uri
+            }
           }
         }
       }
-    `;
+    }
+  `;
 
-  const { loading, error, data } = useQuery(GET_CATEGORY);
-  const [callGetListPosts, { data: listPosts }] = useLazyQuery(GET_LIST_POSTS, {
+  const { loading, error, data } = useQuery(GET_CATEGORY, {
     fetchPolicy: "network-only",
+  });
+  const [callGetListPosts, { data: listPosts }] = useLazyQuery(GET_LIST_POSTS, {
+    fetchPolicy: "cache-and-network",
   });
 
   const categoryList = data?.categories?.nodes;
-
+  const postLists = listPosts?.informationalPost?.nodes;
   const getListPosts = (item) => {
-    setCategory(item);
+    // router.push("/category/" + item.slug);
     callGetListPosts({
       variables: {
         categoryName: item.name,
       },
     });
   };
+  const callGetPost = (item) => {
+    var content = document.getElementById("content");
+    content.innerHTML = item.content;
+  };
+
   return (
     <div>
       <div className="container mx-auto p-4">
         <p className="text-center">Catelogy</p>
         <div className="catelogy flex justify-center">
           {categoryList?.map((item) => (
-            <a
-              onClick={() => getListPosts(item)}
-              className="nav-link mt-4"
-              data-toggle="tab"
-              href="#"
-              role="tab"
-              aria-selected="false"
-            >
+            <div onClick={() => getListPosts(item)}>
               <ul
                 className="nav nav-tabs text-center"
                 id="myTab"
@@ -62,9 +74,28 @@ const Category = () => {
                   {item.name}
                 </li>
               </ul>
-            </a>
+            </div>
           ))}
         </div>
+        <p className="text-center">Posts by category</p>
+        {postLists?.map((item) => (
+          <div
+            className="card flex border bg-cyan-500 shadow-lg shadow-cyan-500/50 mt-8 text-white rounded"
+            onClick={() => callGetPost(item)}
+          >
+            <img
+              width="200"
+              height="100"
+              className="mr-3"
+              src={
+                "https://wordpress-749115-2523479.cloudwaysapps.com/" +
+                item?.featuredImage?.node?.uri
+              }
+            ></img>
+            <p className="mt-3">{item.title}</p>
+          </div>
+        ))}
+        <div className="mt-8" id="content"></div>
       </div>
     </div>
   );
