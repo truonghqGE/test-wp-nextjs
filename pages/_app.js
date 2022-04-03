@@ -2,6 +2,7 @@ import "../styles/globals.css";
 import React from "react";
 import "katex/dist/katex.min.css";
 import Header from "@/components/header/index";
+import HeadSEO from "@/components/SEO/head";
 import Head from "@/components/SEO/head";
 import Footer from "@/components/footer/index";
 import { useRouter } from "next/router";
