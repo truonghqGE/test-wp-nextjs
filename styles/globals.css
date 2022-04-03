@@ -76,6 +76,9 @@ html {
   margin-top: 32px !important;
 }
 @media screen and (max-width: 782px) {
+  .item-category {
+    min-width: 100%;
+  }
   html {
     margin-top: 46px !important;
   }

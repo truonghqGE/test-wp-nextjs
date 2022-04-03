@@ -39,10 +39,36 @@ export const GET_LIST_POSTS = gql`
         link
         id
         content
+        date
         featuredImage {
           node {
             uri
           }
+        }
+      }
+    }
+  }
+`;
+export const GET_POST_BY = gql`
+  query GraphQL($slug: String!) {
+    informationBy(slug: $slug) {
+      title
+      uri
+      slug
+      content
+      featuredImage {
+        node {
+          uri
+        }
+      }
+      date
+      author {
+        node {
+          lastName
+          name
+          firstName
+          email
+          description
         }
       }
     }

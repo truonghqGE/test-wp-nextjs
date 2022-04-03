@@ -58,7 +58,7 @@ export default function Header() {
               </div>
             </div>
           </div>
-          <div className="logo">
+          <div className="logo cursor-pointer">
             <Link href="/">
               <img
                 src="https://wordpress-749115-2523479.cloudwaysapps.com/wp-content/uploads/2022/02/tnhealth.svg"

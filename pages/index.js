@@ -28,10 +28,6 @@ export default function Home({ posts }) {
                   <a href="https://wordpress-749115-2523479.cloudwaysapps.com/">
                     Home
                   </a>{" "}
-                  »{" "}
-                  <span className="breadcrumb_last" aria-current="page">
-                    Nutrition
-                  </span>
                 </span>
               </span>
             </p>{" "}
@@ -39,7 +35,7 @@ export default function Home({ posts }) {
         </div>
         <div className="container">
           <div className="author-post-2">
-            <h3 className="font24">Nutrition</h3>
+            <h3 className="font24">All Posts</h3>
             <div className="author-post-list the-lpost">
               {posts.map((item, index) => {
                 const element = item.node;
