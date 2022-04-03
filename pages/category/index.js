@@ -1,41 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useQuery, useLazyQuery } from "@apollo/client";
-import gql from "graphql-tag";
 import { useRouter } from "next/router";
+import { GET_CATEGORY, GET_LIST_POSTS } from "@/api/graphql/queries";
 
 const Category = () => {
   const router = useRouter();
-  const GET_CATEGORY = gql`
-    query GraphQL {
-      categories {
-        nodes {
-          name
-          slug
-          id
-          uri
-        }
-      }
-    }
-  `;
-  const GET_LIST_POSTS = gql`
-    query GraphQL($categoryName: String!) {
-      informationalPost(where: { categoryName: $categoryName }) {
-        nodes {
-          title
-          slug
-          link
-          id
-          content
-          featuredImage {
-            node {
-              uri
-            }
-          }
-        }
-      }
-    }
-  `;
-
   const { loading, error, data } = useQuery(GET_CATEGORY, {
     fetchPolicy: "network-only",
   });
