@@ -1,6 +1,10 @@
 import React from "react";
 import client from "@/api/base/axios-client";
-import { GET_CATEGORY, GET_LIST_POSTS } from "@/api/graphql/queries";
+import {
+  GET_CATEGORY,
+  GET_LIST_POSTS,
+  GET_CATEGORY_BY_SLUG,
+} from "@/api/graphql/queries";
 
 export async function getStaticPaths() {
   const { data } = await client.query({ query: GET_CATEGORY });
@@ -11,16 +15,21 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  console.log(params);
-  const { data } = await client.query({
-    query: GET_LIST_POSTS,
-    variables: { categoryName: params.slug },
+  const { data: category } = await client.query({
+    query: GET_CATEGORY_BY_SLUG,
+    variables: { slug: params.slug },
   });
-  return { props: {data} };
+  const cate = category.categories.edges[0]?.node || {};
+  const { data: resultPosts } = await client.query({
+    query: GET_LIST_POSTS,
+    variables: { categoryName: cate.name },
+  });
+
+  const posts = resultPosts?.informationalPost?.nodes || [];
+  return { props: { posts, cate } };
 }
 
-export default function Home({data}) {
-  console.log(data);
+export default function Home(props) {
   return (
     <div>
       <div
