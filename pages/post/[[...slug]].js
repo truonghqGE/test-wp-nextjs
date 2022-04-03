@@ -1,6 +1,24 @@
-import React from "react";
-
-export default function Home() {
+import React,{useEffect} from "react";
+import { useRouter } from "next/router";
+import { useLazyQuery } from "@apollo/client";
+import { GET_LIST_POSTS } from "@/api/graphql/queries";
+const Post = () => {
+  const router = useRouter();
+  const { slug } = router.query;
+  const [callInfoPosts, { data: listPosts }] = useLazyQuery(GET_LIST_POSTS, {
+    fetchPolicy: "cache-and-network",
+  });
+  const postLists = listPosts?.informationalPost?.nodes;
+  useEffect(() => {
+    if (slug) {
+      callInfoPosts({
+        variables: {
+          categoryName: slug[1],
+        },
+      });
+    }
+  }, [slug]);
+  console.log(postLists,'postLists');
   return (
     <div>
       <main id="content">
@@ -744,4 +762,5 @@ export default function Home() {
       </main>
     </div>
   );
-}
+};
+export default Post;

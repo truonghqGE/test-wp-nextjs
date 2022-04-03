@@ -22,10 +22,9 @@ const Category = () => {
     }
   }, [slug]);
 
-  // const callGetPost = (item) => {
-  //   var content = document.getElementById("content");
-  //   content.innerHTML = item.content;
-  // };
+  const callGetPost = (item) => {
+    router.push(`/post/${slug}/${item.slug}`)
+  };
 
   return (
     <div>
@@ -68,28 +67,25 @@ const Category = () => {
               <h3 className="font24">Nutrition</h3>
               <div className="author-post-list the-lpost">
                 {postLists?.map((item) => (
-                  <div className="home-post-big row">
+                  <div
+                    className="home-post-big row"
+                    onClick={() => callGetPost(item)}
+                  >
                     <div className="post-feature col-md-4">
-                      <a href="https://wordpress-749115-2523479.cloudwaysapps.com/reviews/liquid-iv-reviews">
-                        <img
-                          width={300}
-                          height={182}
-                          src={`https://wordpress-749115-2523479.cloudwaysapps.com/"${item?.featuredImage?.node?.uri}`}
-                          className="attachment-medium size-medium wp-post-image"
-                          alt=""
-                          loading="lazy"
-                        />{" "}
-                      </a>
+                      <img
+                        width={300}
+                        height={182}
+                        src={`https://wordpress-749115-2523479.cloudwaysapps.com/"${item?.featuredImage?.node?.uri}`}
+                        className="attachment-medium size-medium wp-post-image"
+                        alt=""
+                        loading="lazy"
+                      />{" "}
                     </div>
                     <div className="post-info col-md-8">
                       <h4 className="post-date">
                         {moment(item.date).format("DD/MM/YYYY")}
                       </h4>
-                      <h3 className="post-title">
-                        <a href="https://wordpress-749115-2523479.cloudwaysapps.com/reviews/liquid-iv-reviews">
-                          {item.title}
-                        </a>
-                      </h3>
+                      <h3 className="post-title">{item.title}</h3>
                       <div className="post-des"></div>
                     </div>
                   </div>

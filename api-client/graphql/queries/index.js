@@ -11,7 +11,7 @@ export const GET_CATEGORY = gql`
   }
 `;
 export const GET_LIST_POSTS = gql`
-  query GraphQL($categoryName: String!) {
+  query GraphQL($categoryName: Array!) {
     informationalPost(where: { categoryName: $categoryName }) {
       nodes {
         title
