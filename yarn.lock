@@ -2,6 +2,7 @@
 # yarn lockfile v1
 
 
+<<<<<<< HEAD
 "@apollo/client@^3.5.10":
   "integrity" "sha512-tL3iSpFe9Oldq7gYikZK1dcYxp1c01nlSwtsMz75382HcI6fvQXyFXUCJTTK3wgO2/ckaBvRGw7VqjFREdVoRw=="
   "resolved" "https://registry.npmjs.org/@apollo/client/-/client-3.5.10.tgz"
@@ -20,6 +21,8 @@
     "tslib" "^2.3.0"
     "zen-observable-ts" "^1.2.0"
 
+=======
+>>>>>>> 6771401d17e0a68f851b90dd4b91656eb005debb
 "@babel/code-frame@^7.0.0", "@babel/code-frame@7.12.11":
   "integrity" "sha512-Zt1yodBx1UcyiePMSkWnU4hPqhwq7hGi2nFL1LeA3EUl+q2LQx16MISgJ0+z7dnmgvP9QtIleuETGOiOH1RcIw=="
   "resolved" "https://registry.npmjs.org/@babel/code-frame/-/code-frame-7.12.11.tgz"
