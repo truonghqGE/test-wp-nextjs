@@ -349,3 +349,25 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+.logo {
+  width: fit-content;
+}
+
+.sidebar-pd-type {
+  /* width: fit-content; */
+}
+
+.single-left {
+  /* flex: 0 0 1 !important;
+  max-width: 100% !important; */
+}
+
+.col-md-9 {
+  flex: 0 0 75% !important;
+  max-width: 75% !important;
+}
+.col-md-3 {
+  flex: 0 0 25% !important;
+  max-width: 25% !important;
+}

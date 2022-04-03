@@ -1,6 +1,7 @@
 import "../styles/globals.css";
 import React from "react";
 import HeadSEO from "@/components/SEO/head";
+import Header from "@/components/header";
 import axiosClient from "@/api/base/axios-client";
 import { SWRConfig } from "swr";
 import { useRouter } from "next/router";
@@ -29,8 +30,11 @@ function MyApp({ Component, pageProps }) {
           shouldRetryOnError: false,
         }}
       >
-        {/* <Header /> */}
-        <Component {...pageProps} key={asPath} />
+        <div className="archive category category-nutrition category-19 logged-in admin-bar  customize-support">
+          <Header />
+          <Component {...pageProps} key={asPath} />
+        </div>
+
         <Footer />
       </SWRConfig>
     </React.Fragment>
