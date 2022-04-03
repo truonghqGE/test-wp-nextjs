@@ -1,13 +1,18 @@
 import '../styles/globals.css';
-import Header from '@/components/layouts/header';
 import React from 'react';
 import axiosClient, { constructCallBack } from '@/api/base/axios-client';
 import { SWRConfig } from 'swr';
-import { useAuth } from '../hooks';
-import MiddlewareAuth from '@/components/middleware/auth';
 import 'katex/dist/katex.min.css';
 import { useRouter } from 'next/router';
-import ThemeManager from '@/components/template';
+import Category from "./category"
+
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  useQuery,
+  gql
+} from "@apollo/client";
 
 const variants = {
   hidden: { opacity: 0, x: -200, y: 0 },
@@ -16,7 +21,7 @@ const variants = {
 };
 
 function MyApp({ Component, pageProps }) {
-  const { logout, profile, error } = useAuth();
+  // const { logout, profile, error } = useAuth();
   const router = useRouter();
   const handleErrorAuthentication = () => {
     logout();
@@ -26,9 +31,14 @@ function MyApp({ Component, pageProps }) {
   const theme = Component.layout;
 
   const asPath = router.asPath;
-
+  const client = new ApolloClient({
+    uri: 'https://wordpress-749115-2523479.cloudwaysapps.com/graphql',
+    cache: new InMemoryCache()
+  });
   return (
     <React.Fragment>
+      <ApolloProvider client={client}>
+        <Category></Category>
       <SWRConfig
         value={{
           fetcher: (url) => {
@@ -39,13 +49,14 @@ function MyApp({ Component, pageProps }) {
           shouldRetryOnError: false
         }}
       >
-        <Header />
-        <ThemeManager theme={theme}>
-          <MiddlewareAuth auth={permission !== 'public'}>
+        {/* <Header /> */}
+        {/* <ThemeManager theme={theme}> */}
+          {/* <MiddlewareAuth auth={permission !== 'public'}>
             <Component {...pageProps} key={asPath} />
-          </MiddlewareAuth>
-        </ThemeManager>
+          </MiddlewareAuth> */}
+        {/* </ThemeManager> */}
       </SWRConfig>
+      </ApolloProvider>
     </React.Fragment>
   );
 }
