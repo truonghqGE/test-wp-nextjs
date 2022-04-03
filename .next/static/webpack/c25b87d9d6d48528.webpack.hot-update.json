@@ -1,1 +1,0 @@
-{"c":["pages/_app","webpack"],"r":["pages/category/[...listCatelogy]"],"m":["./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fcategory%2F%5B...listCatelogy%5D&absolutePagePath=%2FUsers%2Fadmin%2FDocuments%2FFreelance%2Ftest-wp-nextjs%2Fpages%2Fcategory%2F%5B...listCatelogy%5D.js!","./pages/category/[...listCatelogy].js"]}
