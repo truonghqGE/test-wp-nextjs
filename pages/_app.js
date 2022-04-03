@@ -2,7 +2,7 @@ import '../styles/globals.css';
 import React from 'react';
 import axiosClient, { constructCallBack } from '@/api/base/axios-client';
 import 'katex/dist/katex.min.css';
-import Category from "./category"
+
 import HeadSEO from "@/components/SEO/head";
 import Header from "@/components/header";
 import { SWRConfig } from "swr";
@@ -33,7 +33,7 @@ function MyApp({ Component, pageProps }) {
     <React.Fragment>
       <ApolloProvider client={client}>
         <HeadSEO />
-        <Category></Category>
+        
       <SWRConfig
         value={{
           fetcher: (url) => {

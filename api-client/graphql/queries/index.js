@@ -5,7 +5,6 @@ export const GET_CATEGORY = gql`
       nodes {
         name
         slug
-        id
         uri
       }
     }
@@ -17,9 +16,13 @@ export const GET_LIST_POSTS = gql`
       nodes {
         title
         slug
-        link
-        id
+        date
         content
+        categories {
+          nodes {
+            name
+          }
+        }
         featuredImage {
           node {
             uri
