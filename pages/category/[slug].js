@@ -15,21 +15,25 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const { data: category } = await client.query({
+  const { data: resultCategory } = await client.query({
     query: GET_CATEGORY_BY_SLUG,
     variables: { slug: params.slug },
   });
-  const cate = category.categories.edges[0]?.node || {};
+  const category = resultCategory.categories.edges[0]?.node || {};
   const { data: resultPosts } = await client.query({
     query: GET_LIST_POSTS,
-    variables: { categoryName: cate.name },
+    variables: { categoryName: category.name },
   });
-
+  const { data: resultCategories } = await client.query({
+    query: GET_CATEGORY,
+  });
+  const categories = resultCategories?.categories?.nodes || [];
   const posts = resultPosts?.informationalPost?.nodes || [];
-  return { props: { posts, cate } };
+  return { props: { posts, category, categories } };
 }
 
 export default function Home(props) {
+  console.log(props);
   return (
     <div>
       <div

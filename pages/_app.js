@@ -28,7 +28,7 @@ function MyApp({ Component, pageProps }) {
       <Head />
       <ApolloProvider client={client}>
         <HeadSEO />
-        {/* <Category /> */}
+        <Category data={pageProps.categories} />
         <div className="archive category category-nutrition category-19 logged-in admin-bar  customize-support">
           <Header />
           <Component {...pageProps} key={asPath} />
