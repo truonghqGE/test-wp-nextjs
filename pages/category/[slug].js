@@ -1,20 +1,26 @@
 import React from "react";
 import client from "@/api/base/axios-client";
-import { GET_CATEGORY } from "@/api/graphql/queries";
+import { GET_CATEGORY, GET_LIST_POSTS } from "@/api/graphql/queries";
 
 export async function getStaticPaths() {
   const { data } = await client.query({ query: GET_CATEGORY });
-  const paths = data.categories.nodes.map( element => ({slug: element.uri}) )
-  return { paths: paths, fallback: false };
+  const paths = data.categories.nodes.map((element) => ({
+    params: { ...element, slug: element.name },
+  }));
+  return { paths: paths, fallback: true };
 }
 
 export async function getStaticProps({ params }) {
   console.log(params);
-  // Pass post data to the page via props
-  return { props: {} };
+  const { data } = await client.query({
+    query: GET_LIST_POSTS,
+    variables: { categoryName: params.slug },
+  });
+  return { props: {data} };
 }
 
-export default function Home() {
+export default function Home({data}) {
+  console.log(data);
   return (
     <div>
       <div

@@ -6,7 +6,7 @@ import HeadSEO from "@/components/SEO/head";
 import Head from "@/components/SEO/head";
 import Footer from "@/components/footer/index";
 import { useRouter } from "next/router";
-import Category from "./category";
+import Category from "@/components/category";
 
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 

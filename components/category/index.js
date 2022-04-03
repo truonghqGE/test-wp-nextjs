@@ -14,18 +14,18 @@ const Category = () => {
 
   const categoryList = data?.categories?.nodes;
   const postLists = listPosts?.informationalPost?.nodes;
-  const getListPosts = (item) => {
-    // router.push("/category/" + item.slug);
-    callGetListPosts({
-      variables: {
-        categoryName: item.name,
-      },
-    });
-  };
-  const callGetPost = (item) => {
-    var content = document.getElementById("content");
-    content.innerHTML = item.content;
-  };
+//   const getListPosts = (item) => {
+//     // router.push("/category/" + item.slug);
+//     callGetListPosts({
+//       variables: {
+//         categoryName: item.name,
+//       },
+//     });
+//   };
+//   const callGetPost = (item) => {
+//     var content = document.getElementById("content");
+//     content.innerHTML = item.content;
+//   };
 
   return (
     <div>
