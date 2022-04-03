@@ -88,7 +88,7 @@ export default function HeadSEO() {
           type="text/css"
           media="all"
         />
-        <link
+        {/* <link
           rel="stylesheet"
           id="font-custom-css"
           href="https://wordpress-749115-2523479.cloudwaysapps.com/wp-content/themes/healthcanal/assets/fonts/SFProDisplay/stylesheet.css?ver=2.0.1"
@@ -101,7 +101,7 @@ export default function HeadSEO() {
           href="https://wordpress-749115-2523479.cloudwaysapps.com/wp-content/themes/healthcanal/assets/fonts/font-awesome.css?ver=5.9.2"
           type="text/css"
           media="all"
-        />
+        /> */}
         <link
           rel="stylesheet"
           id="style-bootstrap-css"

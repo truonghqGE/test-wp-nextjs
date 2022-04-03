@@ -1201,7 +1201,7 @@
   "resolved" "https://registry.npmjs.org/data-uri-to-buffer/-/data-uri-to-buffer-3.0.1.tgz"
   "version" "3.0.1"
 
-"dayjs@^1.10.7":
+"dayjs@^1.11.0":
   "integrity" "sha512-JLC809s6Y948/FuCZPm5IX8rRhQwOiyMb2TfVVQEixG7P8Lm/gt5S7yoQZmC8x1UehI9Pb7sksEt4xx14m+7Ug=="
   "resolved" "https://registry.npmjs.org/dayjs/-/dayjs-1.11.0.tgz"
   "version" "1.11.0"
