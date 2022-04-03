@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 import React from "react";
+=======
+import React, { useEffect, useState } from "react";
+import Head from "next/head";
+import styles from "../styles/Home.module.css";
+import { useRouter } from "next/router";
+import axiosClient from "@/api/base/axios-client";
+>>>>>>> 49ebe2df5fb296848b7e9e9b209b99a2ae254126
 
 export default function Home() {
   return (
