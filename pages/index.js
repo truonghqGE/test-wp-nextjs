@@ -2,6 +2,7 @@ import React from "react";
 import client from "@/api/base/axios-client";
 import { GET_CATEGORY, GET_ALL_POST } from "@/api/graphql/queries";
 import Link from "next/link";
+import dayjs from "dayjs";
 
 export async function getStaticProps() {
   const { data: resultPosts } = await client.query({
@@ -16,7 +17,6 @@ export async function getStaticProps() {
 }
 
 export default function Home({ posts }) {
-  console.log(posts);
   return (
     <div>
       <main id="content" className="cate-content">
@@ -41,12 +41,12 @@ export default function Home({ posts }) {
           <div className="author-post-2">
             <h3 className="font24">Nutrition</h3>
             <div className="author-post-list the-lpost">
-              {posts.map((item) => {
+              {posts.map((item, index) => {
                 const element = item.node;
                 return (
-                  <div className="home-post-big row">
+                  <div className="home-post-big row" key={element.slug + index}>
                     <div className="post-feature col-md-4">
-                      <a href="https://wordpress-749115-2523479.cloudwaysapps.com/reviews/liquid-iv-reviews">
+                      <Link href={"/post/" + element.slug}>
                         <img
                           width={300}
                           height={182}
@@ -54,13 +54,16 @@ export default function Home({ posts }) {
                           className="attachment-medium size-medium wp-post-image"
                           alt=""
                           loading="lazy"
-                        />{" "}
-                      </a>
+                        />
+                      </Link>
                     </div>
                     <div className="post-info col-md-8">
-                      <h4 className="post-date">March 11, 2022</h4>
+                      <h4 className="post-date">
+                        {/* {dayjs(element.modified)} */}
+                        {dayjs(element.modified).format("MMMM D, YYYY")}
+                      </h4>
                       <h3 className="post-title">
-                        <Link href={"/possts/" + element.slug}>
+                        <Link href={"/post/" + element.slug}>
                           {element.title}
                         </Link>
                       </h3>

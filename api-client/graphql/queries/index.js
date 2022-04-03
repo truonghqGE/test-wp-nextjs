@@ -58,6 +58,7 @@ export const GET_ALL_POST = gql`
           title
           uri
           status
+          modified
           template {
             templateName
           }

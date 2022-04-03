@@ -8,7 +8,7 @@ const Category = ({ data }) => {
         {/* <p className="text-center">Catelogy</p> */}
         <div className="catelogy flex justify-center">
           {categoryList?.map((item) => (
-            <div>
+            <div key={item.name}>
               <ul
                 className="nav nav-tabs text-center"
                 id="myTab"
