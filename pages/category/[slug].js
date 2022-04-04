@@ -5,14 +5,16 @@ import {
   GET_LIST_POSTS,
   GET_CATEGORY_BY_SLUG,
 } from "@/api/graphql/queries";
-import moment from "moment"
+import moment from "moment";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 export async function getStaticPaths() {
   const { data } = await client.query({ query: GET_CATEGORY });
   const paths = data.categories.nodes.map((element) => ({
     params: { ...element, slug: element.name },
   }));
-  return { paths: paths, fallback: true };
+  return { paths: paths, fallback: "blocking" };
 }
 
 export async function getStaticProps({ params }) {
@@ -34,7 +36,7 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Home(props) {
-  console.log(props,'props');
+  const router = useRouter();
   const { posts, category, categories } = props;
   return (
     <div>
@@ -75,7 +77,7 @@ export default function Home(props) {
             <h3 className="font24">{category?.name}</h3>
             <div className="author-post-list the-lpost">
               {posts?.map((item) => (
-                <a href={`/post/${item?.slug}`}>
+                <Link href={`/post/${item?.slug}`}>
                   <div className="home-post-big row" key={item.id}>
                     <div className="post-feature col-md-4">
                       <img
@@ -88,7 +90,9 @@ export default function Home(props) {
                       />{" "}
                     </div>
                     <div className="post-info col-md-8">
-                      <h4 className="post-date">{moment(item?.date).format("DD/MM/YYYY")}</h4>
+                      <h4 className="post-date">
+                        {moment(item?.date).format("DD/MM/YYYY")}
+                      </h4>
                       <h3 className="post-title">{item?.title}</h3>
                       <div className="post-des">
                         <p>
@@ -99,7 +103,7 @@ export default function Home(props) {
                       </div>
                     </div>
                   </div>
-                </a>
+                </Link>
               ))}
             </div>
             <div className="noteLoad" attr-value={24} />
