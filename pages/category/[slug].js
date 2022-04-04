@@ -13,7 +13,7 @@ export async function getStaticPaths() {
   const paths = data.categories.nodes.map((element) => ({
     params: { ...element, slug: element.name },
   }));
-  return { paths: paths, fallback: true };
+  return { paths: paths, fallback: "blocking" };
 }
 
 export async function getStaticProps({ params }) {
@@ -35,7 +35,6 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Home(props) {
-  console.log(props, "props");
   const { posts, category, categories } = props;
   return (
     <div>
@@ -76,7 +75,7 @@ export default function Home(props) {
             <h3 className="font24">{category?.name}</h3>
             <div className="author-post-list the-lpost">
               {posts?.map((item) => (
-                <Link href={`/post/${item?.slug}`} key={item?.slug}>
+                <Link href={`/post/${item?.slug}`}>
                   <div className="home-post-big row" key={item.id}>
                     <div className="post-feature col-md-4">
                       <img

@@ -13,7 +13,7 @@ const Category = ({ data }) => {
         )}
         <div className="catelogy flex justify-center">
           {categoryList?.map((item) => (
-            <Link href={"/category/" + item.slug} key={item.name}>
+            <Link href={"/category/" + item.slug} key={item.name} prefetch={false}>
               <div className="w-30 item-category cursor-pointer rounded h-20 p-3 nav-item m-4 bg-cyan-500 shadow-lg shadow-cyan-500/50 text-white">
                 {item.name}
               </div>
