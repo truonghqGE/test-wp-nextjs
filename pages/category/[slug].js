@@ -75,7 +75,7 @@ export default function Home(props) {
             <h3 className="font24">{category?.name}</h3>
             <div className="author-post-list the-lpost">
               {posts?.map((item) => (
-                <Link href={`/post/${item?.slug}`}>
+                <Link href={`/post/${item?.slug}`} className="cursor-pointer">
                   <div className="home-post-big row" key={item.id}>
                     <div className="post-feature col-md-4">
                       <img
