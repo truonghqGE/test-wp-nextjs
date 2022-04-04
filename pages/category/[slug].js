@@ -76,7 +76,7 @@ export default function Home(props) {
             <div className="author-post-list the-lpost">
               {posts?.map((item) => (
                 <Link href={`/post/${item?.slug}`} className="cursor-pointer">
-                  <div className="home-post-big row" key={item.id}>
+                  <div className="home-post-big row cursor-pointer" key={item.id}>
                     <div className="post-feature col-md-4">
                       <img
                         width={300}
