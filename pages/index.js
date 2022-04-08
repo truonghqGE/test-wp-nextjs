@@ -23,13 +23,7 @@ export default function Home({ posts }) {
         <div className="link-page">
           <div className="container">
             <p id="breadcrumbs">
-              <span>
-                <span>
-                  <a href="https://wordpress-749115-2523479.cloudwaysapps.com/">
-                    Home
-                  </a>{" "}
-                </span>
-              </span>
+              <span>Home</span>
             </p>{" "}
           </div>
         </div>

@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import client from "@/api/base/axios-client";
+import Head from "next/head";
+import Link from "next/link";
 import {
   GET_CATEGORY,
   GET_LIST_POSTS,
@@ -37,22 +39,32 @@ export default function Home({ post }) {
 
   return (
     <div>
+      <Head>
+        <title>
+          {informationBy?.title} | TN Health - Informative Source For Your
+          Health
+        </title>
+        <meta
+          property="og:title"
+          content={`${informationBy?.title} | TN Health - Informative Source For Your Health`}
+          key="title"
+        />
+        <meta
+          name="description"
+          content={`${informationBy?.title} | TN Health - Informative Source For Your Health`}
+        />
+      </Head>
       <main id="content">
         <div className="link-page">
           <div className="container">
             <p id="breadcrumbs">
               <span>
-                <span>
-                  <a href="https://wordpress-749115-2523479.cloudwaysapps.com/">
-                    Home
-                  </a>{" "}
-                  »{" "}
-                  <span className="breadcrumb_last" aria-current="page">
-                    {informationBy?.title}
-                  </span>
+                <Link href="/">Home</Link> »{" "}
+                <span className="breadcrumb_last" aria-current="page">
+                  {informationBy?.title}
                 </span>
               </span>
-            </p>{" "}
+            </p>
           </div>
         </div>
         <div className="container">
@@ -118,15 +130,17 @@ export default function Home({ post }) {
                 </p>{" "}
               </div>
               <div className="pdetail-fimage">
-                <img
-                  width={750}
-                  height={420}
-                  src={`https://wordpress-749115-2523479.cloudwaysapps.com/${informationBy?.featuredImage?.node?.uri}`}
-                  className="attachment-full size-full wp-post-image"
-                  alt={informationBy?.title}
-                  loading="lazy"
-                />{" "}
-              </div>{" "}
+                {informationBy && (
+                  <img
+                    width={750}
+                    height={420}
+                    src={`https://wordpress-749115-2523479.cloudwaysapps.com/${informationBy?.featuredImage?.node?.uri}`}
+                    className="attachment-full size-full wp-post-image"
+                    alt={informationBy?.title}
+                    loading="lazy"
+                  />
+                )}
+              </div>
               <div className="single-custom sma-list extra-content">
                 <p id="content-post"></p>
               </div>
@@ -289,4 +303,4 @@ export default function Home({ post }) {
       </main>
     </div>
   );
-};
+}

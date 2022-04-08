@@ -8,7 +8,7 @@ export default function HeadSEO() {
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1"
         />
-        <title>Diet Tips To Lose Weight After Gallbladder Removal 2022</title>
+        <title>Home | TN Health - Informative Source For Your Health</title>
         <meta
           name="robots"
           content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"

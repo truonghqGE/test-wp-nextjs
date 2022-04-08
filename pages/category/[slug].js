@@ -1,4 +1,5 @@
 import React from "react";
+import Head from "next/head";
 import client from "@/api/base/axios-client";
 import {
   GET_CATEGORY,
@@ -38,6 +39,20 @@ export default function Home(props) {
   const { posts, category, categories } = props;
   return (
     <div>
+      <Head>
+        <title>
+          {category?.name} | TN Health - Informative Source For Your Health
+        </title>
+        <meta
+          property="og:title"
+          content={`${category?.name} | TN Health - Informative Source For Your Health`}
+          key="title"
+        />
+        <meta
+          name="description"
+          content={`${category?.name} | TN Health - Informative Source For Your Health`}
+        />
+      </Head>
       <div
         className="banner-page"
         style={{
@@ -57,14 +72,9 @@ export default function Home(props) {
           <div className="container">
             <p id="breadcrumbs">
               <span>
-                <span>
-                  <a href="https://wordpress-749115-2523479.cloudwaysapps.com/">
-                    Home
-                  </a>{" "}
-                  »{" "}
-                  <span className="breadcrumb_last" aria-current="page">
-                    {category?.name}
-                  </span>
+                <Link href="/">Home</Link> »{" "}
+                <span className="breadcrumb_last" aria-current="page">
+                  {category?.name}
                 </span>
               </span>
             </p>{" "}
@@ -76,16 +86,21 @@ export default function Home(props) {
             <div className="author-post-list the-lpost">
               {posts?.map((item) => (
                 <Link href={`/post/${item?.slug}`} className="cursor-pointer">
-                  <div className="home-post-big row cursor-pointer" key={item.id}>
+                  <div
+                    className="home-post-big row cursor-pointer"
+                    key={item.id}
+                  >
                     <div className="post-feature col-md-4">
-                      <img
-                        width={300}
-                        height={182}
-                        src={`https://wordpress-749115-2523479.cloudwaysapps.com/${item?.featuredImage?.node?.uri}`}
-                        className="attachment-medium size-medium wp-post-image"
-                        alt=""
-                        loading="lazy"
-                      />{" "}
+                      {(item?.featuredImage?.node?.uri && (
+                        <img
+                          width={300}
+                          height={182}
+                          src={`https://wordpress-749115-2523479.cloudwaysapps.com${item?.featuredImage?.node?.uri}`}
+                          className="attachment-medium size-medium wp-post-image"
+                          alt=""
+                          loading="lazy"
+                        />
+                      )) || <p>Error image</p>}
                     </div>
                     <div className="post-info col-md-8">
                       <h4 className="post-date">
